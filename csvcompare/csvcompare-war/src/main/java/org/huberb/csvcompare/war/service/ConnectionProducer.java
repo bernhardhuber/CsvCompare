@@ -19,19 +19,20 @@ import javax.sql.DataSource;
  */
 @RequestScoped
 public class ConnectionProducer {
-
+    
     @Inject
     private PoolCreator poolCreator;
-
+    
     @Produces
     @RequestScoped
     Connection create() throws SQLException {
         final DataSource ds = poolCreator.retrieve();
         final Connection connection = ds.getConnection();
+        connection.setAutoCommit(false);        
         return connection;
     }
-
-    void close(@Disposes Connection connection) throws SQLException {
+    
+    void close(@Disposes Connection connection) throws SQLException {        
         connection.close();
     }
 }

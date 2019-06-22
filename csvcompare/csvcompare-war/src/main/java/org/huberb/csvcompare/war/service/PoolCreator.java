@@ -22,6 +22,7 @@ public class PoolCreator {
     @PostConstruct
     public void setUp() {
         this.cp = JdbcConnectionPool.create("jdbc:h2:~/CsvCompare1", "sa", "sa");
+        this.cp.setMaxConnections(3);
     }
 
     @PreDestroy
