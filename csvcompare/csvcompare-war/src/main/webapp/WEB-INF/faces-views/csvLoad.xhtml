@@ -7,5 +7,11 @@
     template="/WEB-INF/template/mainTemplate.xhtml">
 
     <ui:define name="content">
+        <h:form>
+            <h:inputTextarea value="#{csvLoadController.csv1Data}" />
+            <h:inputTextarea value="#{csvLoadController.csv2Data}" />
+
+            <h:commandButton value="Load" action="#{csvLoadController.loadAction()}"/>
+        </h:form>
     </ui:define>
 </ui:composition>

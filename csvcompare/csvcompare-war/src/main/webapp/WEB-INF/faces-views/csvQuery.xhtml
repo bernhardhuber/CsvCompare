@@ -7,5 +7,15 @@
     template="/WEB-INF/template/mainTemplate.xhtml">
 
     <ui:define name="content">
+        <h:form>
+            <h:commandButton value="Query" action="#{csvQueryController.queryAction()}"/>
+        </h:form>
+        <ui:repeat value="#{csvQueryController.data}" var="elem">
+            <pre>
+                #{elem}
+            </pre>
+        </ui:repeat>
     </ui:define>
+
 </ui:composition>
+
