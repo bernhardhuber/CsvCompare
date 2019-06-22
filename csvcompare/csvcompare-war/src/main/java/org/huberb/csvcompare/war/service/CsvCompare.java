@@ -29,7 +29,7 @@ public class CsvCompare {
     public List<String> csvCompare(String tn1, String tn2) throws SQLException, IOException {
         List<String> result = new ArrayList<>();
         String sqlL
-                = "SELECT 'L', CSV1.*, CSV2.* "
+                = "SELECT 'L' AS JOINMODE, CSV1.*, CSV2.* "
                 + "FROM " + tn1 + " CSV1 "
                 + "LEFT JOIN " + tn2 + " CSV2  "
                 + "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
@@ -37,7 +37,7 @@ public class CsvCompare {
                 + "ORDER BY 2";
         result.addAll(executeQuery(sqlL));
 
-        String sqlR = "SELECT 'R', CSV1.*, CSV2.* "
+        String sqlR = "SELECT 'R' AS JOINMODE, CSV1.*, CSV2.* "
                 + "FROM " + tn1 + " CSV1 "
                 + "RIGHT JOIN " + tn2 + " CSV2 "
                 + "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
