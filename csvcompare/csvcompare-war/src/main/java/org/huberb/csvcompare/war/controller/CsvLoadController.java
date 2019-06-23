@@ -5,6 +5,7 @@
  */
 package org.huberb.csvcompare.war.controller;
 
+import org.huberb.csvcompare.war.service.Constants;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.enterprise.context.RequestScoped;

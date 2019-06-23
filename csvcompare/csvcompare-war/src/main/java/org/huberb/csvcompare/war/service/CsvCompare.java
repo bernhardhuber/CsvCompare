@@ -32,7 +32,8 @@ public class CsvCompare {
                 = "SELECT 'L' AS JOINMODE, CSV1.*, CSV2.* "
                 + "FROM " + tn1 + " CSV1 "
                 + "LEFT JOIN " + tn2 + " CSV2  "
-                + "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
+                + buildOnClause()
+                //+ "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
                 + "WHERE CSV2.VON IS NULL "
                 + "ORDER BY 2";
         result.addAll(executeQuery(sqlL));
@@ -40,7 +41,8 @@ public class CsvCompare {
         String sqlR = "SELECT 'R' AS JOINMODE, CSV1.*, CSV2.* "
                 + "FROM " + tn1 + " CSV1 "
                 + "RIGHT JOIN " + tn2 + " CSV2 "
-                + "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
+                + buildOnClause()
+                //+ "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
                 + "WHERE CSV1.VON IS NULL "
                 + "ORDER BY 2";
         result.addAll(executeQuery(sqlR));
@@ -53,7 +55,8 @@ public class CsvCompare {
         String sql = "SELECT 'I' AS JOINMODE, CSV1.*, CSV2.* "
                 + "FROM " + tn1 + " CSV1 "
                 + "INNER JOIN " + tn2 + " CSV2  "
-                + "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
+                + buildOnClause()
+                //+ "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
                 + "ORDER BY 2";
         result.addAll(executeQuery(sql));
         return result;
@@ -73,5 +76,22 @@ public class CsvCompare {
             }
         }
         return result;
+    }
+
+    // "ON CSV1.VON = CSV2.VON AND CSV1.BETREFF = CSV2.BETREFF "
+    String buildOnClause() {
+        String[] columns = Constants.splittedColumns();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < columns.length; i += 1) {
+            String column = columns[i];
+            if (i == 0) {
+                sb.append(" ON ");
+            } else {
+                sb.append(" AND ");
+            }
+            sb.append("CSV1.").append(column).append(" = ").append("CSV2.").append(column).append(" ");
+        }
+        return sb.toString();
     }
 }

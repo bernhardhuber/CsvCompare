@@ -20,13 +20,13 @@ public class PoolCreator {
     private JdbcConnectionPool cp;
 
     @PostConstruct
-    public void setUp() {
+    public void onCreate() {
         this.cp = JdbcConnectionPool.create("jdbc:h2:~/CsvCompare1", "sa", "sa");
         this.cp.setMaxConnections(3);
     }
 
     @PreDestroy
-    public void tearDown() {
+    public void onDestroy() {
         this.cp.dispose();
     }
 
