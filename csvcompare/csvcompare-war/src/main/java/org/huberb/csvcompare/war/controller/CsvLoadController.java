@@ -49,7 +49,7 @@ public class CsvLoadController {
     //
     public void loadAction() throws IOException, SQLException {
         {
-            FileManager.FileElement fe1 = fm.creaeFileElement("csv1");
+            FileManager.FileElement fe1 = fm.createFileElement("csv1");
             try {
                 fm.writeToFileElement(fe1, csv1Data);
                 String tn1 = Constants.TN_CSV_1;
@@ -59,7 +59,7 @@ public class CsvLoadController {
             }
         }
         {
-            FileManager.FileElement fe2 = fm.creaeFileElement("csv2");
+            FileManager.FileElement fe2 = fm.createFileElement("csv2");
             try {
                 fm.writeToFileElement(fe2, csv2Data);
                 String tn2 = Constants.TN_CSV_2;

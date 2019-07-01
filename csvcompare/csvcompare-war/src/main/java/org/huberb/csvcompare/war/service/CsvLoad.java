@@ -34,8 +34,9 @@ public class CsvLoad {
         final String normalizedFileName = f.getAbsoluteFile().toURI().toString();
         final String sql_2 = "CREATE TABLE " + tn + " AS "
                 + "SELECT * FROM CSVREAD(" + "'" + normalizedFileName + "'" + ","
-                + "null,"
-                + "'charset=UTF-8 fieldSeparator=|')";
+                + Constants.CSVREAD_COLUMNSSTRING + ", "
+                + Constants.CSVREAD_CSVOPTIONS
+                + ")";
 
         try (PreparedStatement s = con.prepareStatement(sql_2)) {
             s.execute();

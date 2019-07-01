@@ -13,6 +13,7 @@ import java.nio.file.Path;
 import javax.enterprise.context.RequestScoped;
 
 /**
+ * Manage {@link File}: create temp file, write file, delete file.
  *
  * @author berni3
  */
@@ -28,7 +29,7 @@ public class FileManager {
         }
     }
 
-    public FileElement creaeFileElement(String suffix) throws IOException {
+    public FileElement createFileElement(String suffix) throws IOException {
         File f = File.createTempFile("csvread_", suffix);
         FileElement fe = new FileElement();
         fe.f = f;

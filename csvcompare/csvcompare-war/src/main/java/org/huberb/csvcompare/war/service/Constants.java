@@ -15,8 +15,10 @@ public class Constants {
 
     public final static String TN_CSV_1 = "CSV_1";
     public final static String TN_CSV_2 = "CSV_2";
-
     public final static String COLUMNS = "VON,BETREFF";
+
+    public final static String CSVREAD_COLUMNSSTRING = "null";
+    public final static String CSVREAD_CSVOPTIONS = "'charset=UTF-8 fieldSeparator=|')";
 
     public final static String[] splittedColumns() {
         String[] columnsSplitted = StringUtils.split(COLUMNS, ',');
