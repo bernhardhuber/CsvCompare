@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 
 /**
@@ -21,6 +23,7 @@ import javax.inject.Inject;
  * @author berni3
  */
 @Stateless
+@TransactionAttribute(TransactionAttributeType.NEVER)
 public class CsvCompare {
 
     @Inject

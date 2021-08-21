@@ -18,7 +18,7 @@ public class Constants {
     public final static String COLUMNS = "VON,BETREFF";
 
     public final static String CSVREAD_COLUMNSSTRING = "null";
-    public final static String CSVREAD_CSVOPTIONS = "'charset=UTF-8 fieldSeparator=|')";
+    public final static String CSVREAD_CSVOPTIONS = "'charset=UTF-8 fieldSeparator=|'";
 
     public final static String[] splittedColumns() {
         String[] columnsSplitted = StringUtils.split(COLUMNS, ',');

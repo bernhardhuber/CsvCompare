@@ -22,23 +22,28 @@ import javax.inject.Inject;
 @TransactionAttribute(TransactionAttributeType.NEVER)
 public class CsvLoad {
 
+    private final String sql_1_format = "DROP TABLE IF EXISTS %s";
+    private final String sql2_format = "CREATE TABLE %s AS SELECT * FROM CSVREAD('%s', %s, %s)";
+
     @Inject
     private Connection con;
 
     public void loadCsv(File f, String tn) throws SQLException {
-        String sql_1 = "DROP TABLE IF EXISTS " + tn;
-        try (PreparedStatement s = con.prepareStatement(sql_1)) {
+        final String sql_1_formatted = String.format(sql_1_format, tn);
+        //final String sql_1 = "DROP TABLE IF EXISTS " + tn;
+        try (PreparedStatement s = con.prepareStatement(sql_1_formatted)) {
             s.execute();
         }
 
         final String normalizedFileName = f.getAbsoluteFile().toURI().toString();
-        final String sql_2 = "CREATE TABLE " + tn + " AS "
-                + "SELECT * FROM CSVREAD(" + "'" + normalizedFileName + "'" + ","
-                + Constants.CSVREAD_COLUMNSSTRING + ", "
-                + Constants.CSVREAD_CSVOPTIONS
-                + ")";
+        final String sql_2_formatted = String.format(sql2_format, tn, normalizedFileName, Constants.CSVREAD_COLUMNSSTRING, Constants.CSVREAD_CSVOPTIONS);
+        //final String sql_2 = "CREATE TABLE " + tn + " AS "
+        //        + "SELECT * FROM CSVREAD(" + "'" + normalizedFileName + "'" + ","
+        //        + Constants.CSVREAD_COLUMNSSTRING + ", "
+        //        + Constants.CSVREAD_CSVOPTIONS
+        //        + ")";
 
-        try (PreparedStatement s = con.prepareStatement(sql_2)) {
+        try (PreparedStatement s = con.prepareStatement(sql_2_formatted)) {
             s.execute();
         }
     }

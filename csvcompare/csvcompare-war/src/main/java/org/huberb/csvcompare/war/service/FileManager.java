@@ -20,6 +20,8 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class FileManager {
 
+    String charsetName="UTF-8";
+
     public static class FileElement {
 
         private File f;
@@ -38,7 +40,8 @@ public class FileManager {
 
     public void writeToFileElement(FileElement fe, String content) throws IOException {
         Path p = fe.f.toPath();
-        Files.write(p, content.getBytes(Charset.forName("UTF-8")));
+
+        Files.write(p, content.getBytes(Charset.forName(charsetName)));
     }
 
     public void deleteFileElement(FileElement fe) {

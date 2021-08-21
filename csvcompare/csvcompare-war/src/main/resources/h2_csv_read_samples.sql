@@ -11,7 +11,8 @@
 /*
 CSV (Comma Separated Values) Support
 
-The CSV file support can be used inside the database using the functions CSVREAD and CSVWRITE, or it can be used outside the database as a standalone tool.
+The CSV file support can be used inside the database using the functions 
+CSVREAD and CSVWRITE, or it can be used outside the database as a standalone tool.
 Reading a CSV File from Within a Database
 
 A CSV file can be read using the function CSVREAD. Example:
